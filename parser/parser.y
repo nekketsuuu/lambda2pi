@@ -12,7 +12,7 @@ import "github.com/nekketsuuu/lambda2pi"
        term lambda2pi.Lambda
 }
 
-%type<term>	expr app atomic
+%type<term>	top expr app atomic
 
 %token	LPAR RPAR
 %token	LAMBDA DOT
@@ -21,14 +21,19 @@ import "github.com/nekketsuuu/lambda2pi"
 
 %%
 
-
-expr:
-	app
+top:
+	expr
 	{
 		$$ = $1
 		if l, isYyLex := yylex.(*yyLex); isYyLex {
 			l.term = $$
 		}
+	}
+
+expr:
+	app
+	{
+		$$ = $1
 	}
 |	LAMBDA IDENT DOT expr
 	{
