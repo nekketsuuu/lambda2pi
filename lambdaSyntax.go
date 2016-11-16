@@ -14,18 +14,18 @@ type Lambda interface {
 }
 
 type (
-	// A type for variables x
+	// a variable: x
 	LVar struct {
 		Name LambdaIdent
 	}
 
-	// A type for the abstraction (\x. M)
+	// a lambda abstraction: (\x. M)
 	LAbs struct {
 		Var  LambdaIdent
 		Body Lambda
 	}
 
-	// A type for the application (M N)
+	// an application: (M N)
 	LApp struct {
 		First  Lambda
 		Second Lambda

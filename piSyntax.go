@@ -9,40 +9,40 @@ type Pi interface {
 }
 
 type (
-	// O
+	// the terminate process: O
 	PNull struct{}
 
-	// x
+	// a variable: x
 	PVar struct {
 		Name PiIdent
 	}
 
-	// x?y.P
+	// an input guard: x?y.P
 	PIn struct {
 		Channel PiIdent
 		Value   PiIdent
 		Body    Pi
 	}
 
-	// x!y.P
+	// an output guard: x!y.P
 	POut struct {
 		Channel PiIdent
 		Value   PiIdent
 		Body    Pi
 	}
 
-	// P|Q
+	// a parallel composition: P|Q
 	PPar struct {
 		First  Pi
 		Second Pi
 	}
 
-	// *P
+	// a replication: *P
 	PRep struct {
 		Body Pi
 	}
 
-	// new x in P
+	// a name restriction: new x in P
 	PNew struct {
 		Name PiIdent
 		Body Pi
