@@ -3,8 +3,13 @@ package lambda2pi
 // A type for identifiers
 type PiIdent string
 
+func (id PiIdent) String() string {
+	return string(id)
+}
+
 // A type for pi terms
 type Pi interface {
+	String() string
 	pi()
 }
 
@@ -56,3 +61,25 @@ func (POut) Pi()  {}
 func (PPar) Pi()  {}
 func (PRep) Pi()  {}
 func (PNew) Pi()  {}
+
+func (p PNull) String() string {
+	return "O"
+}
+func (p PVar) String() string {
+	return p.Name.String()
+}
+func (p PIn) String() string {
+	return p.Channel.String() + "?" + p.Value.String() + "." + p.Body.String()
+}
+func (p POut) String() string {
+	return p.Channel.String() + "!" + p.Value.String() + "." + p.Body.String()
+}
+func (p PPar) String() string {
+	return "(" + p.First.String() + " | " + p.Second.String() + ")"
+}
+func (p PRep) String() string {
+	return "(*" + p.Body.String() + ")"
+}
+func (p PNew) String() string {
+	return "(new " + p.Name.String() + " in " + p.Body.String() + ")"
+}
