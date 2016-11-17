@@ -97,12 +97,13 @@ func TestParseExpr(t *testing.T) {
 }
 
 var files = map[string]bool{
-	"simple.lambda":   true,
-	"simple2.lambda":  true,
-	"simple3.lambda":  true,
-	"simple4.lambda":  true,
-	"illParen.lambda": false,
-	"nilParen.lambda": false,
+	"simple.lambda":     true,
+	"simple2.lambda":    true,
+	"simple3.lambda":    true,
+	"simple4.lambda":    true,
+	"illParen.lambda":   false,
+	"nilParen.lambda":   false,
+	"nobodyAbst.lambda": false,
 }
 
 // tests for some big examples
@@ -112,7 +113,7 @@ func TestParseFiles(t *testing.T) {
 		_, err := ParseFile(path)
 		if (err == nil) != success {
 			if success {
-				t.Errorf("An error occured while parsing a file \"%v\": %v", path, err)
+				t.Errorf("An error occured while parsing a file \"%v\". The error message is: %v", path, err)
 			} else {
 				t.Errorf("It should fail while parsing a file \"%v\", but it succeed.", path)
 			}

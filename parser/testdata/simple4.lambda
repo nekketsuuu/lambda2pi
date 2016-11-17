@@ -1,2 +1,2 @@
-(\x. \y. y (\z. x x y z))
-(\x. \y. y (\z. x x y z))
+(\x. \y. y \z. x x y z)
+(\x. \y. y \z. x x y z)
