@@ -34,7 +34,7 @@ func parseBytes(b []byte) (lambda2pi.Lambda, error) {
 
 	// yyParse returns 0 if succeed
 	if yyParse(&lexer) != 0 {
-		if lexer.err != nil {
+		if lexer.err == nil {
 			lexer.err = errors.New("parser: goyacc doesn't set the error value")
 		}
 		return lambda2pi.LVar{Name: "error"}, lexer.err
