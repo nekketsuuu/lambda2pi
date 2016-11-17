@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"path/filepath"
 	"testing"
 
 	"github.com/nekketsuuu/lambda2pi"
@@ -92,5 +93,29 @@ func TestParseExpr(t *testing.T) {
 	}
 	if _, ok = xx.(lambda2pi.LAbs).Body.(lambda2pi.LApp); !ok {
 		t.Errorf("ParseExpr(\"%v\"): got %T for the type of \"%v\", want lambda2pi.LApp", e, x, xx.String())
+	}
+}
+
+var files = map[string]bool{
+	"simple.lambda":   true,
+	"simple2.lambda":  true,
+	"simple3.lambda":  true,
+	"simple4.lambda":  true,
+	"illParen.lambda": false,
+	"nilParen.lambda": false,
+}
+
+// tests for some big examples
+func TestParseFiles(t *testing.T) {
+	for filename, success := range files {
+		path := filepath.Join("testdata", filename)
+		_, err := ParseFile(path)
+		if (err == nil) != success {
+			if success {
+				t.Errorf("An error occured while parsing a file \"%v\": %v", path, err)
+			} else {
+				t.Errorf("It should fail while parsing a file \"%v\", but it succeed.", path)
+			}
+		}
 	}
 }
