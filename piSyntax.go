@@ -14,53 +14,53 @@ type Pi interface {
 }
 
 type (
-	// the terminate process: O
+	// The terminate process: O
 	PNull struct{}
 
-	// a variable: x
+	// A variable: x
 	PVar struct {
 		Name PiIdent
 	}
 
-	// an input guard: x?y.P
+	// An input guard: x?y.P
 	PIn struct {
 		Channel PiIdent
 		Value   PiIdent
 		Body    Pi
 	}
 
-	// an output guard: x!y.P
+	// An output guard: x!y.P
 	POut struct {
 		Channel PiIdent
 		Value   PiIdent
 		Body    Pi
 	}
 
-	// a parallel composition: P|Q
+	// A parallel composition: P|Q
 	PPar struct {
 		First  Pi
 		Second Pi
 	}
 
-	// a replication: *P
+	// A replication: *P
 	PRep struct {
 		Body Pi
 	}
 
-	// a name restriction: new x in P
+	// A name restriction: new x in P
 	PNew struct {
 		Name PiIdent
 		Body Pi
 	}
 )
 
-func (PNull) Pi() {}
-func (PVar) Pi()  {}
-func (PIn) Pi()   {}
-func (POut) Pi()  {}
-func (PPar) Pi()  {}
-func (PRep) Pi()  {}
-func (PNew) Pi()  {}
+func (PNull) pi() {}
+func (PVar) pi()  {}
+func (PIn) pi()   {}
+func (POut) pi()  {}
+func (PPar) pi()  {}
+func (PRep) pi()  {}
+func (PNew) pi()  {}
 
 func (p PNull) String() string {
 	return "O"
