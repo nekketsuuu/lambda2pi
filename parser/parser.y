@@ -12,7 +12,7 @@ import "github.com/nekketsuuu/lambda2pi"
        term lambda2pi.Lambda
 }
 
-%type<term>	top expr app atomic
+%type<term>	top expr abstr atomic
 
 %token	LPAR RPAR
 %token	LAMBDA DOT
@@ -31,23 +31,20 @@ top:
 	}
 
 expr:
-	app
+	abstr
 	{
 		$$ = $1
 	}
+|	expr abstr
+	{
+		$$ = lambda2pi.LApp{ First: $1, Second: $2 }
+	}
+
+abstr:
+	atomic
 |	LAMBDA IDENT DOT expr
 	{
 		$$ = lambda2pi.LAbs{ Var: $2, Body: $4 }
-	}
-
-app:
-	atomic
-	{
-		$$ = $1
-	}
-|	app atomic
-	{
-		$$ = lambda2pi.LApp{ First: $1, Second: $2 }
 	}
 
 atomic:
