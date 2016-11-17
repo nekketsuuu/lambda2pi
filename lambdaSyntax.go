@@ -14,18 +14,18 @@ type Lambda interface {
 }
 
 type (
-	// a variable: x
+	// A variable: x
 	LVar struct {
 		Name LambdaIdent
 	}
 
-	// a lambda abstraction: (\x. M)
+	// A lambda abstraction: (\x. M)
 	LAbs struct {
 		Var  LambdaIdent
 		Body Lambda
 	}
 
-	// an application: (M N)
+	// An application: (M N)
 	LApp struct {
 		First  Lambda
 		Second Lambda
@@ -48,3 +48,12 @@ func (t LAbs) String() string {
 func (t LApp) String() string {
 	return "(" + t.First.String() + " " + t.Second.String() + ")"
 }
+
+// A type of terms treated as values in CbV lambda calculus
+type lambdaValue interface {
+	String() string
+	lambdaValue()
+}
+
+func (t LVar) lambdaValue() {}
+func (t LAbs) lambdaValue() {}
