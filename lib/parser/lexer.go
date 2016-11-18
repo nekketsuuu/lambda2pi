@@ -123,11 +123,7 @@ func (x *yyLex) next() rune {
 }
 
 // The parser calls this method on a parse error.
-//
-// TODO(nekketsuuu): delete log
-//
 func (x *yyLex) Error(s string) {
-	log.Printf("parse error: %s\n", s)
 	x.err = errors.New(s)
 }
 
