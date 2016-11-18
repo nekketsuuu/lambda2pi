@@ -1,4 +1,4 @@
-package lambda2pi
+package convert
 
 import (
 	"errors"

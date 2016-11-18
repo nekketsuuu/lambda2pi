@@ -1,4 +1,4 @@
-package lambda2pi
+package convert
 
 import (
 	"github.com/nekketsuuu/lambda2pi/lib/parser"
