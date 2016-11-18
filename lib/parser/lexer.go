@@ -1,13 +1,14 @@
 // This parser package provides lexer and parser of lambda calculus.
 //
-// Note that parser.go is auto-generated from parser.y, using goyacc.
+// Note that parser.go is auto-generated from parser.y, using goyacc. (So there is some auto-generated constants even in godoc of this package.)
+//
 // If you want to re-generate parser.go, run
 //
 //     $ go generate
 //
 // or use goyacc directly (please look at generate.go).
 //
-// If you want to know about <prefix>Lexer and <prefix>Parser, read the godoc of goyacc.
+// If you want to know more, especially about <prefix>Lexer and <prefix>Parser, read the godoc of goyacc.
 //
 // References:
 //
@@ -40,6 +41,7 @@ const eof = 0
 //
 // In fact, it is OK to use any type which provides the methods
 // Lex(*<prefix>SymType) int and Error(string).
+//
 type yyLex struct {
 	line []byte        // the source code
 	peek rune          // the next Unicode character

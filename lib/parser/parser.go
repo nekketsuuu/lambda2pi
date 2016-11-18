@@ -1,12 +1,20 @@
 //line parser.y:2
+
+// This parsing rules has 3 shift/reduce conflicts,
+// however it doesn't matter because shift rules are preceded.
+//
+// Auto-generated comments are not mixed up with godoc comments
+// by the empty comment below.
+
+//
 package parser
 
 import __yyfmt__ "fmt"
 
-//line parser.y:3
+//line parser.y:10
 import "github.com/nekketsuuu/lambda2pi/lib/syntax"
 
-//line parser.y:10
+//line parser.y:17
 type yySymType struct {
 	yys   int
 	ident syntax.LambdaIdent
@@ -35,7 +43,7 @@ const yyEofCode = 1
 const yyErrCode = 2
 const yyInitialStackSize = 16
 
-//line parser.y:61
+//line parser.y:68
 
 //line yacctab:1
 var yyExca = [...]int{
@@ -435,7 +443,7 @@ yydefault:
 
 	case 1:
 		yyDollar = yyS[yypt-1 : yypt+1]
-		//line parser.y:26
+		//line parser.y:33
 		{
 			yyVAL.term = yyDollar[1].term
 			if l, isYyLex := yylex.(*yyLex); isYyLex {
@@ -444,31 +452,31 @@ yydefault:
 		}
 	case 2:
 		yyDollar = yyS[yypt-1 : yypt+1]
-		//line parser.y:35
+		//line parser.y:42
 		{
 			yyVAL.term = yyDollar[1].term
 		}
 	case 3:
 		yyDollar = yyS[yypt-2 : yypt+1]
-		//line parser.y:39
+		//line parser.y:46
 		{
 			yyVAL.term = syntax.LApp{First: yyDollar[1].term, Second: yyDollar[2].term}
 		}
 	case 5:
 		yyDollar = yyS[yypt-4 : yypt+1]
-		//line parser.y:46
+		//line parser.y:53
 		{
 			yyVAL.term = syntax.LAbs{Var: yyDollar[2].ident, Body: yyDollar[4].term}
 		}
 	case 6:
 		yyDollar = yyS[yypt-3 : yypt+1]
-		//line parser.y:52
+		//line parser.y:59
 		{
 			yyVAL.term = yyDollar[2].term
 		}
 	case 7:
 		yyDollar = yyS[yypt-1 : yypt+1]
-		//line parser.y:56
+		//line parser.y:63
 		{
 			yyVAL.term = syntax.LVar{Name: yyDollar[1].ident}
 		}

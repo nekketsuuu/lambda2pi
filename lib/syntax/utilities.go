@@ -1,3 +1,6 @@
+// This package provides the types for the syntax
+// of the lambda calculus and the pi calculus.
+//
 package syntax
 
 // TODO(nekketsuuu): return error value

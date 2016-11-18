@@ -1,5 +1,12 @@
 %{
 
+// This parsing rules has 3 shift/reduce conflicts,
+// however it doesn't matter because shift rules are preceded.
+//
+// Auto-generated comments are not mixed up with godoc comments
+// by the empty comment below.
+
+//
 package parser
 
 import "github.com/nekketsuuu/lambda2pi/lib/syntax"

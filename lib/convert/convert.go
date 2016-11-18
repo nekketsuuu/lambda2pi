@@ -1,3 +1,9 @@
+// The package convert provides the function Convert, which converts the lambda term into the pi term
+//
+// Each function Convert, ConvertFromFiles and ConvertFromString needs a mode for an argument. Only CallByValue mode is implemented currently.
+//
+// TODO(nekketsuuu): Implement CallByName mode
+//
 package convert
 
 import (
