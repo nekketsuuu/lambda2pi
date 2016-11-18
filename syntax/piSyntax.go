@@ -1,4 +1,4 @@
-package lambda2pi
+package syntax
 
 // A type for identifiers
 type PiIdent string

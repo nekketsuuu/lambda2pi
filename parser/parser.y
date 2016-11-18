@@ -2,14 +2,14 @@
 
 package parser
 
-import "github.com/nekketsuuu/lambda2pi"
+import "github.com/nekketsuuu/lambda2pi/syntax"
 
 %}
 
 
 %union {
-       ident lambda2pi.LambdaIdent
-       term lambda2pi.Lambda
+       ident syntax.LambdaIdent
+       term syntax.Lambda
 }
 
 %type<term>	top expr abstr atomic
@@ -37,14 +37,14 @@ expr:
 	}
 |	expr abstr
 	{
-		$$ = lambda2pi.LApp{ First: $1, Second: $2 }
+		$$ = syntax.LApp{ First: $1, Second: $2 }
 	}
 
 abstr:
 	atomic
 |	LAMBDA IDENT DOT expr
 	{
-		$$ = lambda2pi.LAbs{ Var: $2, Body: $4 }
+		$$ = syntax.LAbs{ Var: $2, Body: $4 }
 	}
 
 atomic:
@@ -54,7 +54,7 @@ atomic:
 	}
 |	IDENT
 	{
-		$$ = lambda2pi.LVar{ Name: $1 }
+		$$ = syntax.LVar{ Name: $1 }
 	}
 
 

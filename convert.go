@@ -4,6 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"strconv"
+
+	. "github.com/nekketsuuu/lambda2pi/syntax"
 )
 
 // Convert a lambda term into a pi term.
@@ -24,11 +26,11 @@ func Convert(l Lambda, mode EvalMode) (Pi, error) {
 
 func convertAsCbV(l Lambda, p PiIdent, index *int) (Pi, error) {
 	switch l.(type) {
-	case lambdaValue:
+	case LambdaValue:
 		// [[ V ]]p = p?y.[[ y := V ]] (y not free in V)
-		y := toPiIdent("y" + strconv.Itoa(*index)) // new name
+		y := ToPiIdent("y" + strconv.Itoa(*index)) // new name
 		(*index)++
-		vp, err := convertSbst(y, l.(lambdaValue), index)
+		vp, err := convertSbst(y, l.(LambdaValue), index)
 		return POut{
 			Channel: p,
 			Value:   y,
@@ -91,7 +93,7 @@ func ap(p PiIdent, q PiIdent, r PiIdent) Pi {
 	}
 }
 
-func convertSbst(y PiIdent, v lambdaValue, index *int) (Pi, error) {
+func convertSbst(y PiIdent, v LambdaValue, index *int) (Pi, error) {
 	switch v.(type) {
 	case LVar:
 		// [[ y := x ]] = *y?w.x!w
@@ -100,7 +102,7 @@ func convertSbst(y PiIdent, v lambdaValue, index *int) (Pi, error) {
 				Channel: y,
 				Value:   "w",
 				Body: POut{
-					Channel: convertIdent(v.(LVar).Name),
+					Channel: ToPiIdent(v.(LVar).Name),
 					Value:   "w",
 					Body:    PNull{},
 				},
@@ -115,7 +117,7 @@ func convertSbst(y PiIdent, v lambdaValue, index *int) (Pi, error) {
 				Value:   "w",
 				Body: PIn{
 					Channel: "w",
-					Value:   convertIdent(v.(LAbs).Var),
+					Value:   ToPiIdent(v.(LAbs).Var),
 					Body: PNew{
 						Name: "p",
 						Body: mp,

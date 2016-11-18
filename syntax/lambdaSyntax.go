@@ -1,4 +1,4 @@
-package lambda2pi
+package syntax
 
 // A type of identifiers
 type LambdaIdent string
@@ -50,7 +50,7 @@ func (t LApp) String() string {
 }
 
 // A type of terms treated as values in CbV lambda calculus
-type lambdaValue interface {
+type LambdaValue interface {
 	String() string
 	lambdaValue()
 }

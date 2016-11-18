@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/nekketsuuu/lambda2pi"
+	"github.com/nekketsuuu/lambda2pi/syntax"
 )
 
 // tests of some small examples
@@ -16,8 +16,8 @@ func TestParseExpr(t *testing.T) {
 		t.Errorf("ParseExpr(%q): %v", e, err)
 	}
 	// sanity check
-	if _, ok := x.(lambda2pi.LVar); !ok {
-		t.Errorf("ParseExpr(\"%v\"): got %T, want lambda2pi.LVar", e, x)
+	if _, ok := x.(syntax.LVar); !ok {
+		t.Errorf("ParseExpr(\"%v\"): got %T, want syntax.LVar", e, x)
 	}
 
 	// a lambda abstraction
@@ -27,8 +27,8 @@ func TestParseExpr(t *testing.T) {
 		t.Errorf("ParseExpr(%q): %v", e, err)
 	}
 	// sanity check
-	if _, ok := x.(lambda2pi.LAbs); !ok {
-		t.Errorf("ParseExpr(\"%v\"): got %T, want lambda2pi.LAbs", e, x)
+	if _, ok := x.(syntax.LAbs); !ok {
+		t.Errorf("ParseExpr(\"%v\"): got %T, want syntax.LAbs", e, x)
 	}
 
 	// parenthesis
@@ -38,8 +38,8 @@ func TestParseExpr(t *testing.T) {
 		t.Errorf("ParseExpr(%q): %v", e, err)
 	}
 	// sanity check
-	if _, ok := x.(lambda2pi.LVar); !ok {
-		t.Errorf("ParseExpr(\"%v\"): got %T, want lambda2pi.LVar", e, x)
+	if _, ok := x.(syntax.LVar); !ok {
+		t.Errorf("ParseExpr(\"%v\"): got %T, want syntax.LVar", e, x)
 	}
 
 	// application 1
@@ -49,8 +49,8 @@ func TestParseExpr(t *testing.T) {
 		t.Errorf("ParseExpr(%q): %v", e, err)
 	}
 	// sanity check
-	if _, ok := x.(lambda2pi.LApp); !ok {
-		t.Errorf("ParseExpr(\"%v\"): got %T, want lambda2pi.LApp", e, x)
+	if _, ok := x.(syntax.LApp); !ok {
+		t.Errorf("ParseExpr(\"%v\"): got %T, want syntax.LApp", e, x)
 	}
 
 	// application 2
@@ -60,11 +60,11 @@ func TestParseExpr(t *testing.T) {
 		t.Errorf("ParseExpr(%q): %v", e, err)
 	}
 	// sanity check
-	if _, ok := x.(lambda2pi.LApp); !ok {
-		t.Errorf("ParseExpr(\"%v\"): got %T, want lambda2pi.LApp", e, x)
+	if _, ok := x.(syntax.LApp); !ok {
+		t.Errorf("ParseExpr(\"%v\"): got %T, want syntax.LApp", e, x)
 	}
-	if _, ok := x.(lambda2pi.LApp).First.(lambda2pi.LAbs); !ok {
-		t.Errorf("ParseExpr(\"%v\"): got %T for the type of (\\x. x), want lambda2pi.LAbs", e, x)
+	if _, ok := x.(syntax.LApp).First.(syntax.LAbs); !ok {
+		t.Errorf("ParseExpr(\"%v\"): got %T for the type of (\\x. x), want syntax.LAbs", e, x)
 	}
 
 	// application 3
@@ -74,25 +74,25 @@ func TestParseExpr(t *testing.T) {
 		t.Errorf("ParseExpr(%q): %v", e, err)
 	}
 	// sanity check
-	var xx lambda2pi.Lambda
+	var xx syntax.Lambda
 	var ok bool
-	if xx, ok = x.(lambda2pi.LApp); !ok {
-		t.Errorf("ParseExpr(\"%v\"): got %T, want lambda2pi.LApp", e, x)
+	if xx, ok = x.(syntax.LApp); !ok {
+		t.Errorf("ParseExpr(\"%v\"): got %T, want syntax.LApp", e, x)
 	}
-	if _, ok = xx.(lambda2pi.LApp).Second.(lambda2pi.LVar); !ok {
-		t.Errorf("ParseExpr(\"%v\"): got %T for the type of \"z\", want lambda2pi.LVar", e, x)
+	if _, ok = xx.(syntax.LApp).Second.(syntax.LVar); !ok {
+		t.Errorf("ParseExpr(\"%v\"): got %T for the type of \"z\", want syntax.LVar", e, x)
 	}
-	if xx, ok = xx.(lambda2pi.LApp).First.(lambda2pi.LApp); !ok {
-		t.Errorf("ParseExpr(\"%v\"): got %T for the type of \"%v\", want lambda2pi.LApp", e, x, xx.String())
+	if xx, ok = xx.(syntax.LApp).First.(syntax.LApp); !ok {
+		t.Errorf("ParseExpr(\"%v\"): got %T for the type of \"%v\", want syntax.LApp", e, x, xx.String())
 	}
-	if xx, ok = xx.(lambda2pi.LApp).First.(lambda2pi.LAbs); !ok {
-		t.Errorf("ParseExpr(\"%v\"): got %T for the type of \"%v\", want lambda2pi.LAbs", e, x, xx.String())
+	if xx, ok = xx.(syntax.LApp).First.(syntax.LAbs); !ok {
+		t.Errorf("ParseExpr(\"%v\"): got %T for the type of \"%v\", want syntax.LAbs", e, x, xx.String())
 	}
-	if xx, ok = xx.(lambda2pi.LAbs).Body.(lambda2pi.LAbs); !ok {
-		t.Errorf("ParseExpr(\"%v\"): got %T for the type of \"%v\", want lambda2pi.LAbs", e, x, xx.String())
+	if xx, ok = xx.(syntax.LAbs).Body.(syntax.LAbs); !ok {
+		t.Errorf("ParseExpr(\"%v\"): got %T for the type of \"%v\", want syntax.LAbs", e, x, xx.String())
 	}
-	if _, ok = xx.(lambda2pi.LAbs).Body.(lambda2pi.LApp); !ok {
-		t.Errorf("ParseExpr(\"%v\"): got %T for the type of \"%v\", want lambda2pi.LApp", e, x, xx.String())
+	if _, ok = xx.(syntax.LAbs).Body.(syntax.LApp); !ok {
+		t.Errorf("ParseExpr(\"%v\"): got %T for the type of \"%v\", want syntax.LApp", e, x, xx.String())
 	}
 }
 

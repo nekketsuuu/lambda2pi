@@ -30,7 +30,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/nekketsuuu/lambda2pi"
+	"github.com/nekketsuuu/lambda2pi/syntax"
 )
 
 // The parser expects the lexer to return 0 on EOF.
@@ -41,9 +41,9 @@ const eof = 0
 // In fact, it is OK to use any type which provides the methods
 // Lex(*<prefix>SymType) int and Error(string).
 type yyLex struct {
-	line []byte           // the source code
-	peek rune             // the next Unicode character
-	term lambda2pi.Lambda // parsing result
+	line []byte        // the source code
+	peek rune          // the next Unicode character
+	term syntax.Lambda // parsing result
 	err  error
 }
 
@@ -99,7 +99,7 @@ ConsumeAlphas:
 	if c != eof {
 		x.peek = c
 	}
-	yylval.ident = lambda2pi.LambdaIdent(b.String())
+	yylval.ident = syntax.ToLambdaIdent(b.String())
 	return IDENT
 }
 
