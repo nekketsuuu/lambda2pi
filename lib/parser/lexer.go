@@ -124,7 +124,7 @@ func (x *yyLex) next() rune {
 
 // The parser calls this method on a parse error.
 func (x *yyLex) Error(s string) {
-	x.err = errors.New(s)
+	x.err = errors.New("parser: " + s)
 }
 
 // IsBasicLatinAlphabet reports whether the rune is a letter of [A-Za-z].

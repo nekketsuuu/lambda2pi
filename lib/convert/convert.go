@@ -17,10 +17,10 @@ func Convert(l Lambda, mode EvalMode) (Pi, error) {
 		return p, err
 	case CallByName:
 		// not implemented
-		return PNull{}, errors.New("Not implemented")
+		return PNull{}, errors.New("convert: CallByName has not implemented yet")
 		// return convertAsCbN(l)
 	default:
-		return PNull{}, errors.New("Unknown mode")
+		return PNull{}, errors.New("convert: Unknown mode")
 	}
 }
 
@@ -61,7 +61,7 @@ func convertAsCbV(l Lambda, p PiIdent, index *int) (Pi, error) {
 			},
 		}, nil
 	default:
-		return PNull{}, errors.New(fmt.Sprintf("Unknown type %T. This error can't be occured", l))
+		return PNull{}, errors.New(fmt.Sprintf("convert: Unknown type %T. This error can't be occured", l))
 	}
 }
 
@@ -126,6 +126,6 @@ func convertSbst(y PiIdent, v LambdaValue, index *int) (Pi, error) {
 			},
 		}, err
 	default:
-		return PNull{}, errors.New(fmt.Sprintf("Unknown type %T. This error can't be occured", v))
+		return PNull{}, errors.New(fmt.Sprintf("convert: Unknown type %T. This error can't be occured", v))
 	}
 }
