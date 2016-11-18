@@ -1,4 +1,4 @@
 package main
 
-var version string = `[version unknown]`
+var version string = `v1.0`
 
