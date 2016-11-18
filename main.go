@@ -10,6 +10,42 @@ import (
 	"github.com/nekketsuuu/lambda2pi/lib/convert"
 )
 
+func usage() {
+	fmt.Fprintf(os.Stderr, "[Description of %s]\n", os.Args[0])
+	fmt.Fprintf(os.Stderr, `This program converts a lambda term into a pi term.
+Precise syntax are described under the description of options.
+
+[Options]
+`)
+	flag.PrintDefaults()
+	fmt.Fprintf(os.Stderr, `
+[Syntax]
+The syntax of the lambda calculus:
+
+    M ::= x      // variables
+        | \x. x  // lambda abstraction
+        | M M    // application
+        | (M)    // parenthesis
+
+Note that a period is required in each lambda abstraction. The period means the longest match rule of the abstraction. Therefore, (\x. y \z. w) means (\x. (y (\z. w))), not ((\x. y) (\z. w)).
+
+The syntax of the pi calculus:
+
+    M ::= O           // the empty process
+                      // (Note that the symbol is not zero,
+                      //  but the 15th latin alphabet, O.)
+        | x           // names
+        | x?x.M       // input
+        | x!x.M       // output
+        | M|M         // parallel execution
+        | *M          // replication (*M is congruent to M|*M)
+        | new x in M  // name restriction
+        | (M)         // parenthesis
+
+Note that there is no summation.
+`)
+}
+
 var (
 	showVersion    bool
 	inputFile      string
@@ -18,6 +54,7 @@ var (
 )
 
 func setFlags() {
+	flag.Usage = usage
 	flag.BoolVar(&showVersion, "version", false, "show version")
 	flag.BoolVar(&showVersion, "v", false, "show version")
 	flag.StringVar(&outputFile, "o", "out.pi", "an output filename")
