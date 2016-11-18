@@ -1,4 +1,5 @@
 # auto-generated files
+bin
 lib/parser/parser.go
 lib/parser/y.output
 
