@@ -19,9 +19,9 @@ L:
 		l, err := parser.ParseExpr(scanner.Text())
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error: %v\n", err)
-			os.Exit(1)
+		} else {
+			fmt.Printf("%v\n", l.String())
 		}
-		fmt.Printf("%v\n", l.String())
 	}
 	if err := scanner.Err(); err != nil {
 		fmt.Fprintf(os.Stderr, "Bad input: %v\n", err)
