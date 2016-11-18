@@ -30,7 +30,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/nekketsuuu/lambda2pi/syntax"
+	"github.com/nekketsuuu/lambda2pi/lib/syntax"
 )
 
 // The parser expects the lexer to return 0 on EOF.

@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/nekketsuuu/lambda2pi/syntax"
+	"github.com/nekketsuuu/lambda2pi/lib/syntax"
 )
 
 // tests of some small examples

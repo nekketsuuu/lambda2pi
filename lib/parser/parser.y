@@ -2,7 +2,7 @@
 
 package parser
 
-import "github.com/nekketsuuu/lambda2pi/syntax"
+import "github.com/nekketsuuu/lambda2pi/lib/syntax"
 
 %}
 

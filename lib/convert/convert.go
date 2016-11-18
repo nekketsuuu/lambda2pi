@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strconv"
 
-	. "github.com/nekketsuuu/lambda2pi/syntax"
+	. "github.com/nekketsuuu/lambda2pi/lib/syntax"
 )
 
 // Convert a lambda term into a pi term.

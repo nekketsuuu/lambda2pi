@@ -1,8 +1,8 @@
 package lambda2pi
 
 import (
-	"github.com/nekketsuuu/lambda2pi/parser"
-	"github.com/nekketsuuu/lambda2pi/syntax"
+	"github.com/nekketsuuu/lambda2pi/lib/parser"
+	"github.com/nekketsuuu/lambda2pi/lib/syntax"
 )
 
 func ConvertFromFile(filename string, mode EvalMode) (syntax.Pi, error) {

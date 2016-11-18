@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/nekketsuuu/lambda2pi/parser"
+	"github.com/nekketsuuu/lambda2pi/lib/parser"
 )
 
 func main() {

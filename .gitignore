@@ -1,6 +1,6 @@
 # auto-generated files
-/parser/parser.go
-/parser/y.output
+lib/parser/parser.go
+lib/parser/y.output
 
 # backup files
 *~

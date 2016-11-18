@@ -4,7 +4,7 @@ import (
 	"errors"
 	"io/ioutil"
 
-	"github.com/nekketsuuu/lambda2pi/syntax"
+	"github.com/nekketsuuu/lambda2pi/lib/syntax"
 )
 
 // ParseFile parses single file as a lambda term, and return the AST.
