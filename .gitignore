@@ -1,7 +1,8 @@
 # auto-generated files
-bin
-lib/parser/parser.go
+lambda2pi
+# lib/parser/parser.go
 lib/parser/y.output
+lib/parser/example_interpret_test/example_interpret_test
 
 # backup files
 *~

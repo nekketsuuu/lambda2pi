@@ -10,9 +10,6 @@ import (
 	"github.com/nekketsuuu/lambda2pi/lib/convert"
 )
 
-// The version number will be set as the git version tag during a build
-var version string = "[version unknown]"
-
 var (
 	showVersion    bool
 	inputFile      string
