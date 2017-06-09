@@ -1,6 +1,6 @@
 ## About
 
-`lambda2pi` is a toy program that converts a lambda-calculus term into pi-calculus term.
+`lambda2pi` is a toy program that converts a lambda-calculus term into a pi-calculus term.
 
 ## Usage & Syntax
 
