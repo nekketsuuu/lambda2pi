@@ -31,15 +31,15 @@ pp!yy0.(*yy0?ww.ww?x.(new pp in pp!yy1.(*yy1?ww.x!ww.O)))
 
 ## Installation
 
-### Prerequisites
+Install Go >= 1.11, and then run the following command:
 
-* Go >= 1.11
-* goyacc: Install by running `go install golang.org/x/tools/cmd/goyacc`
+```sh
+go get -u github.com/nekketsuuu/lambda2pi
+```
 
-### Manual Build
+### Manual Installation
 
 ```sh-session
-$ go get -u github.com/nekketsuuu/lambda2pi
 $ # cd to $GOPATH/src/github.com/nekketsuuu/lambda2pi
 $ go generate
 $ go build
