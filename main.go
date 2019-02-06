@@ -94,7 +94,8 @@ func fileMode(mode convert.EvalMode) error {
 		return err
 	}
 
-	err = ioutil.WriteFile(outputFile, []byte(pi.String()), 0664)
+	str := fmt.Sprintln(pi.String())
+	err = ioutil.WriteFile(outputFile, []byte(str), 0664)
 	if err != nil {
 		return err
 	}
