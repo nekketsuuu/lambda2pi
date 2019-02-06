@@ -3,5 +3,5 @@
 package tools
 
 import (
-	_ "golang.org/x/tools/cmd/gocode"
+	_ "golang.org/x/tools/cmd/goyacc"
 )
