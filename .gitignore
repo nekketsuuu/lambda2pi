@@ -4,5 +4,8 @@ lambda2pi
 lib/parser/y.output
 lib/parser/example_interpret_test/example_interpret_test
 
+# results
+out.pi
+
 # backup files
 *~
